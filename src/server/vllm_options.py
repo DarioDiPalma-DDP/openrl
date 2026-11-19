@@ -145,6 +145,8 @@ def engine_args(is_lora: bool, sleep_mode: bool = False) -> dict[str, Any]:
   # A checkpoint's generation_config.json could add sampling params the client never asked for, such as a repetition penalty.
   args["generation_config"] = "vllm"
   args["max_model_len"] = int(os.getenv("VLLM_MAX_MODEL_LEN", "8192"))
+  # With vLLM's default of 20, the runner also computes a top-20 over the vocabulary on every decode step which is not needed for OpenRL.
+  args["max_logprobs"] = 0
   # vLLM's own default of 0.92 has run FFT delta applies out of memory on an L4.
   args["gpu_memory_utilization"] = gpu_memory_utilization()
   args.update(sampler_batch_limits())
