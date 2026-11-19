@@ -134,9 +134,7 @@ Cluster setup, node pools and the per-model knobs are in
 [OpenRL on GKE TPU nodes](setup/tpu-on-gke.md).
 
 The TPU sampler image installs the released `vllm-torchtpu` wheel, which serves
-full fine-tuning but not LoRA: multi-LoRA support is not in a release yet, so a
-TPU sampler image for LoRA jobs has to be built from vllm-torchtpu's main
-branch.
+both LoRA and full fine-tuning.
 
 In scheduler mode these variables on the API server set up the worker pods:
 

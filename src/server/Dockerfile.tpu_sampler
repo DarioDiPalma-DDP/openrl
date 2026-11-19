@@ -2,10 +2,9 @@
 
 # TPU sampler image. Same layout as src/server/Dockerfile.tpu, with the
 # `tpu-sampler` extra (vllm-torchtpu: vLLM for TPU on torch-tpu, CPU torch,
-# JAX and libtpu) instead of `tpu`. The model stays torch Parameters, so a full
-# checkpoint can be reloaded in place each step.
-# TODO: multi-LoRA on TPU is not in this release; it needs vllm-torchtpu built
-# from main with PRs #2376, #2359, #2378 and #2360 until a release carries them.
+# JAX and libtpu) instead of `tpu`. It serves LoRA and full fine-tuning; the
+# model stays torch Parameters, so a full checkpoint can be reloaded in place
+# each step.
 
 FROM ubuntu:22.04
 
