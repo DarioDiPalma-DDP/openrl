@@ -64,13 +64,14 @@ vllm = [
     "flashinfer-jit-cache==0.6.18.post1; sys_platform == 'linux'",
 ]
 # TPU trainer. torch-tpu pairs with CPU torch; 2.13.0 is the torch the TPU
-# vLLM release pins, so both TPU images resolve one torch.
+# vLLM release pins, so both TPU images resolve one torch. The sampler's
+# torch-tpu is the one vllm-torchtpu pins, which can trail this one.
 tpu = [
     "datasets",
     "numpy",
     "peft",
     "torch==2.13.0",
-    "torch-tpu==0.2.0; sys_platform == 'linux' and platform_machine == 'x86_64'",
+    "torch-tpu==0.3.0; sys_platform == 'linux' and platform_machine == 'x86_64'",
     "transformers>=5.5.4",
 ]
 # TPU sampler: vLLM for TPU from PyPI (torch-tpu, CPU torch, JAX and libtpu).
