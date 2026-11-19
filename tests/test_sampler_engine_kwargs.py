@@ -37,6 +37,11 @@ class TpuEngineArgsTest(unittest.TestCase):
     self.assertNotIn("compilation_config", args(False, on_tpu=True))
     self.assertIn("compilation_config", args(False, on_tpu=False))
 
+  def test_no_sampler_computes_top_logprobs(self) -> None:
+    for is_lora, on_tpu in ((False, False), (False, True), (True, False), (True, True)):
+      with self.subTest(is_lora=is_lora, on_tpu=on_tpu):
+        self.assertEqual(args(is_lora, on_tpu)["max_logprobs"], 0)
+
   def test_the_tpu_platform_is_out_of_tree_with_tpu_devices(self) -> None:
     cases = (((True, "tpu"), True), ((True, "cuda"), False), ((False, "tpu"), False), ((False, "cuda"), False))
     for (out_of_tree, device_type), expected in cases:
