@@ -74,12 +74,10 @@ tpu = [
     "transformers>=5.5.4",
 ]
 # TPU sampler: vLLM for TPU from PyPI (torch-tpu, CPU torch, JAX and libtpu).
-# TODO: multi-LoRA on TPU is not in this release; it needs vllm-torchtpu built
-# from main with PRs #2376, #2359, #2378 and #2360 until a release carries them.
 tpu-sampler = [
     "torch==2.13.0; sys_platform == 'linux' and platform_machine == 'x86_64'",
     "torchvision==0.28.0; sys_platform == 'linux' and platform_machine == 'x86_64'",
-    "vllm-torchtpu==0.32.0; sys_platform == 'linux' and platform_machine == 'x86_64'",
+    "vllm-torchtpu==0.33.0; sys_platform == 'linux' and platform_machine == 'x86_64'",
 ]
 # Kubernetes cluster mode: the k8s API client used to launch FFT worker pods.
 cluster = [

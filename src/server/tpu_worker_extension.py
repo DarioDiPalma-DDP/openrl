@@ -1,8 +1,7 @@
 """Weight updates for the TPU platform's worker, mixed in through vLLM's worker_extension_cls.
 
-The TPU worker has none of the GPU worker's weight-transfer methods, nor
-reset_encoder_cache, which the sampler calls after each update. These mirror
-vLLM's GPU worker for one model with no draft model.
+The TPU worker has none of the GPU worker's weight-transfer methods. These
+mirror vLLM's GPU worker for one model with no draft model.
 """
 
 from typing import Any
@@ -16,9 +15,6 @@ from server.tpu_weights import FLIPPED_ATTR, flipped_modules
 
 class TPUWeightTransferExtension:
   _open_rl_transfer_engine: WeightTransferEngine | None = None
-
-  def reset_encoder_cache(self) -> None:
-    self.model_runner.reset_encoder_cache()
 
   def _open_rl_engine(self) -> WeightTransferEngine:
     # Created on first use: the TPU worker builds no engine at load time and keeps no self.device.

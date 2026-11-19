@@ -54,11 +54,6 @@ class TPUWeightTransferExtensionTest(unittest.TestCase):
       FakeTPUWorker(object(), flipped=False).start_weight_update()
     self.create_engine.assert_not_called()
 
-  def test_reset_encoder_cache_goes_to_the_model_runner(self) -> None:
-    worker = FakeTPUWorker(object())
-    worker.reset_encoder_cache()
-    worker.model_runner.reset_encoder_cache.assert_called_once_with()
-
 
 if __name__ == "__main__":
   unittest.main()
